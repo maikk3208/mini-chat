@@ -1,108 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Mini Chat con Firebase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f4f8;
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-    }
-    h1 {
-      color: #333;
-      text-align: center;
-    }
-    #messages {
-      border: 1px solid #ccc;
-      background: #fff;
-      padding: 10px;
-      height: 300px;
-      overflow-y: scroll;
-      margin-bottom: 20px;
-    }
-    .message {
-      margin: 5px 0;
-      padding: 6px 10px;
-      background-color: #e3f2fd;
-      border-radius: 5px;
-    }
-    form {
-      display: flex;
-      gap: 10px;
-    }
-    input, button {
-      padding: 10px;
-      font-size: 16px;
-    }
-    input {
-      flex: 1;
-    }
-  </style>
 </head>
 <body>
 
-<h1>Mini Chat Firebase</h1>
+  <h1>💬 Mini Chat Firebase</h1>
 
-<div id="messages"></div>
+  <div id="messages"></div>
 
-<form id="messageForm">
-  <input type="text" id="username" placeholder="Tu nombre" required>
-  <input type="text" id="messageInput" placeholder="Escribe un mensaje..." required>
-  <button type="submit">Enviar</button>
-</form>
+  <form id="messageForm">
+    <input type="text" id="username" placeholder="Tu nombre" required>
+    <input type="text" id="messageInput" placeholder="Escribe un mensaje..." required>
+    <button type="submit">Enviar</button>
+  </form>
 
-<script>
-  // 🔧 Reemplaza estos valores con los de tu propio proyecto Firebase:
-  const firebaseConfig = {
-    apiKey: "AIzaSyCs-ZokJ5-D6iwuWpUyHuR3r7ZEf6rI-j8",
-  authDomain: "proyecto-corte-3-60af2.firebaseapp.com",
-  databaseURL: "https://proyecto-corte-3-60af2-default-rtdb.firebaseio.com",
-  projectId: "proyecto-corte-3-60af2",
-  storageBucket: "proyecto-corte-3-60af2.firebasestorage.app",
-  messagingSenderId: "217029570151",
-  appId: "1:217029570151:web:dcb76bd015a9cb48602ec2",
-  measurementId: "G-2F8ZD2MM03"
-  };
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCs-ZokJ5-D6iwuWpUyHuR3r7ZEf6rI-j8",
+      authDomain: "proyecto-corte-3-60af2.firebaseapp.com",
+      databaseURL: "https://proyecto-corte-3-60af2-default-rtdb.firebaseio.com",
+      projectId: "proyecto-corte-3-60af2",
+      storageBucket: "proyecto-corte-3-60af2.appspot.com",
+      messagingSenderId: "217029570151",
+      appId: "1:217029570151:web:dcb76bd015a9cb48602ec2",
+      measurementId: "G-2F8ZD2MM03"
+    };
 
-  // Inicializar Firebase
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
 
-  const messageForm = document.getElementById("messageForm");
-  const messageInput = document.getElementById("messageInput");
-  const usernameInput = document.getElementById("username");
-  const messagesDiv = document.getElementById("messages");
+    const messageForm = document.getElementById("messageForm");
+    const messageInput = document.getElementById("messageInput");
+    const usernameInput = document.getElementById("username");
+    const messagesDiv = document.getElementById("messages");
 
-  // Enviar mensaje
-  messageForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const username = usernameInput.value;
-    const message = messageInput.value;
-    if (username && message) {
-      db.ref("mensajes").push({
-        nombre: username,
-        texto: message,
-        timestamp: Date.now()
-      });
-      messageInput.value = "";
-    }
-  });
+    messageForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const username = usernameInput.value;
+      const message = messageInput.value;
+      if (username && message) {
+        db.ref("mensajes").push({
+          nombre: username,
+          texto: message,
+          timestamp: Date.now()
+        });
+        messageInput.value = "";
+      }
+    });
 
-  // Escuchar nuevos mensajes en tiempo real
-  db.ref("mensajes").on("child_added", (snapshot) => {
-    const data = snapshot.val();
-    const msgElement = document.createElement("div");
-    msgElement.classList.add("message");
-    msgElement.textContent = `${data.nombre}: ${data.texto}`;
-    messagesDiv.appendChild(msgElement);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-  });
-</script>
-
+    db.ref("mensajes").on("child_added", (snapshot) => {
+      const data = snapshot.val();
+      const msgElement = document.createElement("div");
+      msgElement.classList.add("message");
+      msgElement.textContent = `${data.nombre}: ${data.texto}`;
+      messagesDiv.appendChild(msgElement);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    });
+  </script>
 </body>
 </html>
