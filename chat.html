@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+<body>
+
+  <h1>💬 Chat en vivo</h1>
+  <div class="user-info">👤 Conectado como: <strong id="displayName"></strong></div>
+
+  <div id="messages"></div>
+
+  <form id="messageForm">
+    <input type="text" id="messageInput" placeholder="Escribe un mensaje..." required>
+    <button type="submit">Enviar</button>
+  </form>
+
+  <script>
+    const username = localStorage.getItem('usuario');
+    if (!username) {
+      window.location.href = 'index.html'; // Si no hay usuario, redirige
+    }
+
+    document.getElementById('displayName').textContent = username;
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCs-ZokJ5-D6iwuWpUyHuR3r7ZEf6rI-j8",
+      authDomain: "proyecto-corte-3-60af2.firebaseapp.com",
+      databaseURL: "https://proyecto-corte-3-60af2-default-rtdb.firebaseio.com",
+      projectId: "proyecto-corte-3-60af2",
+      storageBucket: "proyecto-corte-3-60af2.appspot.com",
+      messagingSenderId: "217029570151",
+      appId: "1:217029570151:web:dcb76bd015a9cb48602ec2",
+      measurementId: "G-2F8ZD2MM03"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    const messageForm = document.getElementById("messageForm");
+    const messageInput = document.getElementById("messageInput");
+    const messagesDiv = document.getElementById("messages");
+
+    messageForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const message = messageInput.value.trim();
+      if (message) {
+        db.ref("mensajes").push({
+          nombre: username,
+          texto: message,
+          timestamp: Date.now()
+        });
+        messageInput.value = "";
+      }
+    });
+
+    db.ref("mensajes").on("child_added", (snapshot) => {
+      const data = snapshot.val();
+      const msgElement = document.createElement("div");
+      msgElement.classList.add("message");
+      msgElement.textContent = `${data.nombre}: ${data.texto}`;
+      messagesDiv.appendChild(msgElement);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    });
+  </script>
+
+</body>
+</html>
