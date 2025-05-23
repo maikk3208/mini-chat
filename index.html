@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mini Chat de Yeimy</title>
+  <title>Mini Chat con Firebase</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -10,16 +10,14 @@
 </head>
 <body>
 
-  <h1>💬 Mini Chat</h1>
-  
-  <!-- Mostrar el usuario actual -->
-  <div class="user-info">👤 Conectada como: <strong id="displayName">Yeimy</strong></div>
+  <h1>💬 Mini Chat de Yeimy</h1>
 
   <div id="messages"></div>
 
   <form id="messageForm">
-    <!-- Nombre fijo, oculto -->
+    <!-- 👇 Nombre fijo, oculto -->
     <input type="hidden" id="username" value="Yeimy">
+    
     <input type="text" id="messageInput" placeholder="Escribe un mensaje..." required>
     <button type="submit">Enviar</button>
   </form>
@@ -44,10 +42,6 @@
     const usernameInput = document.getElementById("username");
     const messagesDiv = document.getElementById("messages");
 
-    // Mostrar nombre del usuario arriba
-    document.getElementById("displayName").textContent = usernameInput.value;
-
-    // Enviar mensaje
     messageForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const username = usernameInput.value;
@@ -62,7 +56,6 @@
       }
     });
 
-    // Escuchar nuevos mensajes
     db.ref("mensajes").on("child_added", (snapshot) => {
       const data = snapshot.val();
       const msgElement = document.createElement("div");
@@ -72,6 +65,5 @@
       messagesDiv.scrollTop = messagesDiv.scrollHeight;
     });
   </script>
-
 </body>
 </html>
