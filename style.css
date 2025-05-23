@@ -2,7 +2,7 @@
 
 body {
   font-family: 'Nunito', sans-serif;
-  background: linear-gradient(135deg, #e06b0b, #01060a);
+  background: radial-gradient(circle at center, #e06b0b, #01060a);
   padding: 20px;
   max-width: 600px;
   margin: auto;
