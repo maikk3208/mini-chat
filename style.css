@@ -1,16 +1,29 @@
-
-
 body {
+  position: relative;
   font-family: 'Nunito', sans-serif;
-  background: radial-gradient(circle at center, #e06b0b, #01060a);
+  background: linear-gradient(135deg, #f6d365, #fda085); /* cálido: amarillo a naranja suave */
   padding: 20px;
   max-width: 600px;
   margin: auto;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
+/* Ruido muy sutil para evitar banding */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background: url('https://www.transparenttextures.com/patterns/noise.png');
+  opacity: 0.03;
+  z-index: 1;
+}
+
+/* resto de estilos... */
 h1 {
   text-align: center;
-  color: #004d99;
+  color: #a64e09; /* tono marrón oscuro para contraste */
   margin-bottom: 20px;
 }
 
@@ -22,14 +35,17 @@ h1 {
   height: 320px;
   overflow-y: scroll;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 2;
 }
 
 .message {
   margin: 8px 0;
   padding: 10px 14px;
-  background-color: #d0ebff;
+  background-color: #ffecd1; /* beige claro */
   border-radius: 8px;
   animation: fadeIn 0.3s ease-in;
+  color: #5a3e1b;
 }
 
 @keyframes fadeIn {
@@ -42,40 +58,47 @@ form {
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 20px;
+  position: relative;
+  z-index: 2;
 }
 
 input {
   flex: 1;
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #aaa;
+  border: 1px solid #b77a3a;
   border-radius: 5px;
+  font-weight: 600;
+  color: #5a3e1b;
+  background: #fff7e6;
+  transition: border-color 0.3s;
 }
 
 input:focus {
-  border-color: #007acc;
+  border-color: #a85e1f;
   outline: none;
-  box-shadow: 0 0 6px #007acc66;
+  box-shadow: 0 0 6px #a85e1f88;
 }
 
 button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #007acc;
+  background-color: #d87e1c;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: 700;
   transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #005fa3;
+  background-color: #b86a18;
 }
 
 .user-info {
   text-align: center;
   font-weight: 600;
-  color: #004d99;
+  color: #a64e09;
   margin-bottom: 10px;
 }
