@@ -1,6 +1,6 @@
 body {
-  font-family: 'Nunito', sans-serif;
-  background: linear-gradient(135deg, #e06b0b, #f1f9ff);
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f8;
   padding: 20px;
   max-width: 600px;
   margin: auto;
@@ -8,59 +8,44 @@ body {
 
 h1 {
   text-align: center;
-  color: #004d99;
-  margin-bottom: 20px;
-}
-
-#messages {
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 15px;
-  height: 320px;
-  overflow-y: scroll;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.message {
-  margin: 8px 0;
-  padding: 10px 14px;
-  background-color: #d0ebff;
-  border-radius: 8px;
-  animation: fadeIn 0.3s ease-in;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  color: #333;
 }
 
 form {
   display: flex;
-  flex-wrap: wrap;
   gap: 10px;
   margin-top: 20px;
 }
 
-input {
-  flex: 1;
+input, button {
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #aaa;
+}
+
+input {
+  flex: 1;
+}
+
+#messages {
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 10px;
+  height: 300px;
+  overflow-y: scroll;
+  margin: 20px 0;
   border-radius: 5px;
 }
 
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #007acc;
-  color: white;
-  border: none;
+.message {
+  margin: 5px 0;
+  padding: 6px 10px;
+  background-color: #e3f2fd;
   border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
 }
 
-button:hover {
-  background-color: #005fa3;
+.user-info {
+  text-align: center;
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 10px;
 }
