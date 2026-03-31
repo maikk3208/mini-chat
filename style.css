@@ -1,12 +1,12 @@
 body {
   position: relative;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Nunito', Arial, sans-serif;
   background: linear-gradient(135deg, #f6d365, #fda085); 
   padding: 20px;
   max-width: 900px;
   margin: auto;
   min-height: 100vh;
-  overflow-x: hidden
+  overflow-x: hidden;
 }
 
 
