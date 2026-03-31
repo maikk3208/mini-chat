@@ -3,8 +3,8 @@ body {
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(135deg, #f6d365, #fda085); 
   padding: 20px;
-  width: 100%;
-  margin: 0;
+  max-width: 900px;
+  margin: auto;
   min-height: 100vh;
   overflow-x: hidden
 }
