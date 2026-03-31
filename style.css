@@ -40,13 +40,16 @@ h1 {
 }
 
 .message {
-  margin: 10px 0;
-  padding: 10px 14px;
+  margin: 12px 0;
+  padding: 14px 18px;
   background-color: #ffecd1; 
-  border-radius: 8px;
+  border-radius: 15px;
   animation: fadeIn 0.3s ease-in;
   color: #5a3e1b;
-  font-size: 50px;
+  font-size: 18px;        
+  max-width: 75%;      
+  line-height: 1.4;      
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
 }
 
 @keyframes fadeIn {
