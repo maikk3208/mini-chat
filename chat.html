@@ -41,6 +41,22 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
+    const tiempoLimite = 60000;
+
+setInterval(() => {
+  const ahora = Date.now();
+
+  db.ref("mensajes").once("value", (snapshot) => {
+    snapshot.forEach((child) => {
+      const data = child.val();
+      
+      if (ahora - data.timestamp > tiempoLimite) {
+        db.ref("mensajes/" + child.key).remove();
+      }
+    });
+  });
+}, 5000); 
+
     const messageForm = document.getElementById("messageForm");
     const messageInput = document.getElementById("messageInput");
     const messagesDiv = document.getElementById("messages");
